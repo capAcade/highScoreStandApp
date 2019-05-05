@@ -52,5 +52,5 @@ What to do:
 | Making backend for saving data can be just json file                               |               |       |
 | Adding Space invaders game + sending score updates to ba                           |               |       |
 | game over functionality ws needs to be closed and removed from active player list  |               |       |
-| Create admin dashboard to follow players+ranking and start game                    |               |       |
+| Create admin dashboard to follow players+ranking and start game                    |   Sven        |       |
 | load JSON file on startup with stub data/ or actual saved data                     |               |       |
