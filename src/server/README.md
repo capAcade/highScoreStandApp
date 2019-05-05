@@ -1,4 +1,4 @@
-## API server
+# API server
 
 This is kinda the rest contract how to send and recieve data from the backend trough websockets
 
