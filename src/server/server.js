@@ -1,7 +1,3 @@
-const config = {
-    portWebApi: 8080,
-    portSockets: 8081
-}
 import Xpress from './apiRoutes/xress'
 import WebS from './wsRoutes/wsr'
 import Player from './player'
@@ -19,7 +15,13 @@ console.log(` \x1b[34m
  //**    ** **////** /**///  /**   /    /** **////**  /**  /**
   //****** //********/**     /**        /**//******** ***  /**
    //////   //////// //      //         //  //////// ///   // 
-   \x1b[0m`)
+   \x1b[0m`);
+
+
+const config = {
+    portWebApi: 8080,
+    portSockets: 8081
+}
 
 const app = new Xpress(config); 
 const wsApp = new WebS(config);
