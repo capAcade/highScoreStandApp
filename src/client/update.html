@@ -1,0 +1,23 @@
+update
+
+<script>
+
+const url = 'ws://localhost:3000/updatSecore'
+const connection = new WebSocket(url)
+let ranking;
+console.log('kom ik hier');
+connection.onopen = () => {
+  console.log('open');
+  //connection.send('hey')
+}
+
+connection.onerror = error => {
+  console.log(`WebSocket error: ${error}`)
+}
+
+connection.onmessage = e => {
+    ranking = e.data;
+  console.log(JSON.parse(e.data))
+}
+
+</script>

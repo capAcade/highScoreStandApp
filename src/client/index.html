@@ -1,0 +1,26 @@
+hi
+kaas
+jjj
+
+jhbubuyb
+<script>
+
+const url = 'ws://localhost:8081/scoreBroadcast'
+const connection = new WebSocket(url)
+let ranking;
+console.log('kom ik hier');
+connection.onopen = () => {
+  console.log('open');
+  //connection.send('hey')
+}
+
+connection.onerror = error => {
+  console.log(`WebSocket error: ${error}`)
+}
+
+connection.onmessage = e => {
+    ranking = e.data;
+  console.log(e.data)
+}
+
+</script>
