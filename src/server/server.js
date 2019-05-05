@@ -1,7 +1,9 @@
 import Xpress from './apiRoutes/xress'
 import WebS from './wsRoutes/wsr'
 import Player from './player'
+import Filter from 'bad-words'
 
+const filter = new Filter({ placeHolder: 'x'});
 let activePlayers = [];
 let ranking = [];
 
@@ -39,7 +41,7 @@ const updateRanking = function(){
 };
 
 wsApp.onEvent('addNewPlayer', (data, ws) =>{
-    let plyr = new Player(data.player.nickName,data.player.fullName,data.player.email);
+    let plyr = new Player(filter.clean(data.player.nickName),data.player.fullName,data.player.email);
     activePlayers.push({
         player: plyr,
         ws: ws
