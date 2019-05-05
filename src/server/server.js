@@ -23,19 +23,20 @@ const config = {
     portSockets: 8081
 }
 
+//not used but needed to start frontend
 const app = new Xpress(config); 
 const wsApp = new WebS(config);
 
 const updateRanking = function(){
     ranking.sort(function (a, b) {
         return a.score - b.score;
-      }).reverse();
-    wsApp.broadCastToClients(ranking);
-};
+    }).reverse();
 
-wsApp.onEvent('kaas', (data) =>{
-    console.log('het werkt!', data)
-});
+    activePlayers.sort(function (a, b) {
+        return a.score - b.score;
+    }).reverse();
+    wsApp.broadCastToClients({ranking: ranking, activePlayers: activePlayers});
+};
 
 wsApp.onEvent('addNewPlayer', (data, ws) =>{
     let plyr = new Player(data.player.nickName,data.player.fullName,data.player.email);
@@ -44,11 +45,21 @@ wsApp.onEvent('addNewPlayer', (data, ws) =>{
         ws: ws
     });
     ranking.push(plyr);
-    ws.send('added player');
+    ws.send('{"message": "added player"}');
 });
 
 wsApp.onEvent('updatePlayerScore', (data, ws) =>{
     let player = activePlayers.filter(element => element.player.nickName === data.player.nickName)[0].player;
     player.score = data.player.score;
+    updateRanking();
+});
+
+wsApp.onEvent('startGame', (data, ws) =>{
+    wsApp.broadCastToClients({eventName: 'startGame'});
+});
+
+wsApp.onEvent('resetGame', (data, ws) =>{
+    activePlayers = [];
+    wsApp.broadCastToClients({eventName: 'resetGame'});
     updateRanking();
 });

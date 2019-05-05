@@ -12,6 +12,7 @@ module.exports = {
   plugins: [
     new CopyPlugin([
       { from: 'src/client/index.html', to: '' },
+      { from: 'src/client/adminDash.html', to: '' },
     ]),
   ],
 };

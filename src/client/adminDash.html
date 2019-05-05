@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>The ugly admin dashboard</h1>
+<p>This admin dashboard does just do what it suppost to do. nothing fancy it just works!</p>
+
+<strong>connection websocket is<span id="statusSocket">unknown</span></strong>
+
+<div>
+    <h2>some cool buttonz</h2>
+    <button id="resetGame">reset game</button>
+    <button id="startGame">start game</button>
+</div>
+
+<div>
+    <h2>sendEvent</h2>
+    <form>
+        <textarea rows="15" cols="70" id="eventObject">
+                {
+                    "eventName": "addNewPlayer",
+                    "player": {
+                        "nickName": "pokeMaster",
+                        "fullName": "ash ketchum",
+                        "email": "ash.ketchum@gmail.com"
+                    }
+                }
+        </textarea>
+        <button id="sendEvent">sendEvent</button>
+    </form>
+    
+</div>
+<div>
+    <h2>active players:</h2>
+    <div>
+        <ul id="activePlayersList">
+            <li>player one</li>
+            <li>player two</li>
+            <li>player three</li>
+            <li>player four</li>
+        </ul>
+    </div>
+</div>
+
+<div>
+    <h2>current data:</h2>
+    <div>
+        <ul id="currentData">
+            <li>player one</li>
+            <li>player two</li>
+            <li>player three</li>
+            <li>player four</li>
+        </ul>
+    </div>
+</div>
+
+</body>
+
+<script>
+
+var resetGameButton = document.querySelector('#resetGame');
+var startGameButton = document.querySelector('#startGame');
+var sendEvent = document.querySelector('#sendEvent');
+
+var activePlayersList = document.querySelector('#activePlayersList');
+var currentData = document.querySelector('#currentData');
+var eventObject = document.querySelector('#eventObject');
+var statusSocket = document.querySelector('#statusSocket');
+
+const url = 'ws://localhost:8081/'
+const connection = new WebSocket(url)
+
+var ranking;
+var activePlayers;
+
+connection.onopen = () => {
+  console.log('open');
+  statusSocket.innerHTML = 'open';
+}
+
+connection.onerror = error => {
+  statusSocket.innerHTML = 'error';
+  console.log(`WebSocket error: ${error}`)
+}
+
+connection.onmessage = e => {
+    let data = JSON.parse(e.data);
+    console.log(data);
+    ranking = data.ranking;
+    activePlayers = data.activePlayers;
+
+    currentData.innerHTML ='';
+    activePlayersList.innerHTML = '';
+
+    ranking.forEach(element => {
+        currentData.innerHTML = currentData.innerHTML + `<li>nickname: ${element.nickName} score: ${element.score} email: ${element.email}</li>` 
+    });
+
+    activePlayers.forEach(element => {
+        activePlayersList.innerHTML = activePlayersList.innerHTML + `<li>nickname: ${element.player.nickName} score: ${element.player.score} email: ${element.player.email}</li>`
+    });
+}
+
+sendEvent.addEventListener("click", function(e){
+    e.preventDefault();
+    connection.send(eventObject.value);
+});
+
+startGameButton.addEventListener("click", function(e){
+    e.preventDefault();
+    connection.send('{"eventName": "startGame"}');
+});
+
+resetGameButton.addEventListener("click", function(e){
+    e.preventDefault();
+    connection.send('{"eventName": "resetGame"}');
+});
+
+
+
+
+
+</script>
+
+</html>
