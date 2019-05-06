@@ -47,7 +47,7 @@ What to do:
 
 | Task                                                                               | Who is onit?  | Done  |
 | ---------------------------------------------------------------------------------- |:-------------:| -----:|
-| making front end score board                                                       |               |       |
+| making front end score board                                                       | Esther        |       |
 | Making front end filling in player info                                            |               |       |
 | Making backend for saving data can be just json file                               |               |       |
 | Adding Space invaders game + sending score updates to ba                           |               |       |
