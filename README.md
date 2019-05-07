@@ -46,7 +46,7 @@ npm run build:ba
 What to do:
 
 | Task                                                                               | Who is onit?  | Done                   |
-| ---------------------------------------------------------------------------------- |:-------------:| ----------------------:|
+| ---------------------------------------------------------------------------------- |:-------------:| :---------------------:|
 | making front end score board                                                       | Esther        |                        |
 | Making front end filling in player info                                            | Karin         |                        |
 | Making backend for saving data can be just json file                               | Serge         |                        |
