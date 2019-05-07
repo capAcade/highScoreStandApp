@@ -1,62 +1,90 @@
-<!DOCTYPE html>
-<html>
-<body>
+<!doctype html>
+<html lang="en">
+    <head>
+            <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<h1>The ugly admin dashboard</h1>
-<p>This admin dashboard does just do what it suppost to do. nothing fancy it just works!</p>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-<strong>connection websocket is<span id="statusSocket">unknown</span></strong>
+    </head>
+        <body>
 
-<div>
-    <h2>some cool buttonz</h2>
-    <button id="resetGame">reset game</button>
-    <button id="startGame">start game</button>
-</div>
 
-<div>
-    <h2>sendEvent</h2>
-    <form>
-        <textarea rows="15" cols="70" id="eventObject">
-                {
-                    "eventName": "addNewPlayer",
-                    "player": {
-                        "nickName": "pokeMaster",
-                        "fullName": "ash ketchum",
-                        "email": "ash.ketchum@gmail.com"
-                    }
-                }
-        </textarea>
-        <button id="sendEvent">sendEvent</button>
-    </form>
-    
-</div>
-<div>
-    <h2>active players:</h2>
-    <div>
-        <ul id="activePlayersList">
-            <li>player one</li>
-            <li>player two</li>
-            <li>player three</li>
-            <li>player four</li>
-        </ul>
-    </div>
-</div>
+        <div class="container-fluid">
+                <h1>The ugly admin dashboard</h1>
+                <p>This admin dashboard does just do what it suppost to do. nothing fancy it just works!</p>
+                        <div class="row">
+                          <div class="col-sm">
+                                <h2>some cool buttonz</h2>
+                                <button type="button" class="btn btn-primary btn-lg" id="resetGame">reset game</button>
+                                <button type="button" class="btn btn-success btn-lg" id="startGame">start game</button>
+                          </div>
+                          <div class="col-sm">
+                                <h2>sendEvent</h2>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button type="button" id="pokeMaster" class="btn btn-secondary">add pokeMaster</button>
+                                    <button type="button" id="mashdamman" class="btn btn-secondary">add mashdamman</button>
+                                    <button type="button" id="bugganator" class="btn btn-secondary">add the bugganator</button>
+                                    <button type="button" id="SamuraiJack" class="btn btn-secondary">add Samurai jack</button>
+                                </div>
+                                      
+                                <form>
+                                    <textarea rows="15" cols="70" id="eventObject">
+                                            {
+                                                "eventName": "addNewPlayer",
+                                                "player": {
+                                                    "nickName": "pokeMaster",
+                                                    "fullName": "ash ketchum",
+                                                    "email": "ash.ketchum@gmail.com"
+                                                }
+                                            }
+                                    </textarea>
+                                    <button id="sendEvent">sendEvent</button>
+                                </form>
+                          </div>
+                          <div class="col-sm">
+                                <strong>connection websocket is<span id="statusSocket">unknown</span></strong>
 
-<div>
-    <h2>current data:</h2>
-    <div>
-        <ul id="currentData">
-            <li>player one</li>
-            <li>player two</li>
-            <li>player three</li>
-            <li>player four</li>
-        </ul>
-    </div>
-</div>
+                                <div>
+                                        <h2>active players:</h2>
+                                        <div>
+                                            <ul id="activePlayersList">
+                                                <li>player one</li>
+                                                <li>player two</li>
+                                                <li>player three</li>
+                                                <li>player four</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <h2>current data:</h2>
+                                        <div>
+                                            <ul id="currentData">
+                                                <li>player one</li>
+                                                <li>player two</li>
+                                                <li>player three</li>
+                                                <li>player four</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                          </div>
+                        </div>
+                      </div>
+  
+
+
 
 </body>
 
 <script>
+
+var addPokeMasterButton = document.querySelector('#pokeMaster');
+var addMashdammanButton = document.querySelector('#mashdamman');
+var addBugganatorButton = document.querySelector('#bugganator');
+var addSamuraiJackButton = document.querySelector('#SamuraiJack');
+
 
 var resetGameButton = document.querySelector('#resetGame');
 var startGameButton = document.querySelector('#startGame');
@@ -114,6 +142,30 @@ startGameButton.addEventListener("click", function(e){
 resetGameButton.addEventListener("click", function(e){
     e.preventDefault();
     connection.send('{"eventName": "resetGame"}');
+});
+
+
+
+
+
+
+
+
+addPokeMasterButton.addEventListener("click", function(e){
+    e.preventDefault();
+    connection.send('{"eventName": "addNewPlayer", "player": {"nickName": "pokeMaster","fullName": "ash ketchum", "email": "ash.ketchum@gmail.com"}}');
+});
+addMashdammanButton.addEventListener("click", function(e){
+    e.preventDefault();
+    connection.send('{"eventName": "addNewPlayer", "player": {"nickName": "mashdamman","fullName": "molly malone", "email": "molly.malone@gmail.com"}}');
+});
+addBugganatorButton.addEventListener("click", function(e){
+    e.preventDefault();
+    connection.send('{"eventName": "addNewPlayer", "player": {"nickName": "bugganator","fullName": "natalia zwamata", "email": "natalia.zwamata@gmail.com"}}');
+});
+addSamuraiJackButton.addEventListener("click", function(e){
+    e.preventDefault();
+    connection.send('{"eventName": "addNewPlayer", "player": {"nickName": "samurai jack","fullName": "hosi san", "email": "hosi.san@gmail.com"}}');
 });
 
 

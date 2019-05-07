@@ -47,7 +47,8 @@ wsApp.onEvent('addNewPlayer', (data, ws) =>{
         ws: ws
     });
     ranking.push(plyr);
-    ws.send('{"message": "added player"}');
+    updateRanking();
+   
 });
 
 wsApp.onEvent('updatePlayerScore', (data, ws) =>{
