@@ -28,19 +28,19 @@
                                     <button type="button" id="bugganator" class="btn btn-secondary">add the bugganator</button>
                                     <button type="button" id="SamuraiJack" class="btn btn-secondary">add Samurai jack</button>
                                 </div>
-                                      
+                                    
                                 <form>
-                                    <textarea rows="15" cols="70" id="eventObject">
-                                            {
-                                                "eventName": "addNewPlayer",
-                                                "player": {
-                                                    "nickName": "pokeMaster",
-                                                    "fullName": "ash ketchum",
-                                                    "email": "ash.ketchum@gmail.com"
-                                                }
-                                            }
-                                    </textarea>
-                                    <button id="sendEvent">sendEvent</button>
+                                    <div class="form-group">
+                                    <label for="scoreInput">score</label>
+                                    <input type="number" class="form-control" id="scoreInput" placeholder="0">
+                                    </div>
+                                    <div class="form-group">
+                                    <label for="playerSelect">player</label>
+                                    <select class="form-control" id="playerSelect">
+                                        <option>empty</option>
+                                    </select>
+                                    </div>
+                                    <button type="button" class="btn btn-success btn-lg" id="updateScore">Update score</button>
                                 </form>
                           </div>
                           <div class="col-sm">
@@ -86,14 +86,19 @@ var addBugganatorButton = document.querySelector('#bugganator');
 var addSamuraiJackButton = document.querySelector('#SamuraiJack');
 
 
+var scoreInput = document.querySelector('#scoreInput');
+var playerSelect = document.querySelector('#playerSelect');
+
 var resetGameButton = document.querySelector('#resetGame');
 var startGameButton = document.querySelector('#startGame');
-var sendEvent = document.querySelector('#sendEvent');
+var updateScore = document.querySelector('#updateScore');
 
 var activePlayersList = document.querySelector('#activePlayersList');
 var currentData = document.querySelector('#currentData');
 var eventObject = document.querySelector('#eventObject');
 var statusSocket = document.querySelector('#statusSocket');
+
+var playerSelect = document.querySelector('#playerSelect');
 
 const url = 'ws://localhost:8081/'
 const connection = new WebSocket(url)
@@ -119,9 +124,11 @@ connection.onmessage = e => {
 
     currentData.innerHTML ='';
     activePlayersList.innerHTML = '';
+    playerSelect.innerHTML = '';
 
     ranking.forEach(element => {
         currentData.innerHTML = currentData.innerHTML + `<li>nickname: ${element.nickName} score: ${element.score} email: ${element.email}</li>` 
+        playerSelect.innerHTML = playerSelect.innerHTML + `<option value="${element.nickName}">${element.nickName}</option>`;
     });
 
     activePlayers.forEach(element => {
@@ -129,9 +136,9 @@ connection.onmessage = e => {
     });
 }
 
-sendEvent.addEventListener("click", function(e){
+updateScore.addEventListener("click", function(e){
     e.preventDefault();
-    connection.send(eventObject.value);
+    connection.send(`{"eventName": "updatePlayerScore", "player": {"nickName": "${playerSelect.value}", "score":${scoreInput.value} }}`);
 });
 
 startGameButton.addEventListener("click", function(e){
