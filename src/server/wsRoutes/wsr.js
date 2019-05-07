@@ -7,9 +7,12 @@ export default class WebS{
       
       this.wss.on('connection', ws => {
         ws.on('message', message => {
-          console.log(`Received message => ${message}`)
-          message = JSON.parse(message);
-          this.events[message.eventName](message, ws);
+          try {
+            message = JSON.parse(message);
+            this.events[message.eventName](message, ws);
+          } catch {
+            console.log('Warning got a message that was not a json')
+          }
         })
       })
       console.log(` \x1b[32m WebSockets are listening to ${config.portSockets} \x1b[0m`)
