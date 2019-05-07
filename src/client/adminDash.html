@@ -19,16 +19,34 @@
                                 <h2>some cool buttonz</h2>
                                 <button type="button" class="btn btn-primary btn-lg" id="resetGame">reset game</button>
                                 <button type="button" class="btn btn-success btn-lg" id="startGame">start game</button>
+
+                                <h2>Add player: </h2>
+                                <form>
+                                    <div class="form-group">
+                                        <label for="email">email</label>
+                                        <input type="text" sv-module="email" class="form-control" id="email" placeholder="bla@bla.com">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nickName">nickname</label>
+                                        <input type="text" sv-module="nickName" class="form-control" id="nickName" placeholder="coolName">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="fullName">fullname</label>
+                                        <input type="text" sv-module="fullName" class="form-control" id="fullName" placeholder="yolo lala">
+                                    </div>
+                                    <button type="button" sv-click="submitNewPlayer" class="btn btn-success btn-lg" id="addPlayer">add Player</button>
+                                </form>
+
                           </div>
                           <div class="col-sm">
-                                <h2>sendEvent</h2>
+                                <h2>add Stub players</h2>
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                    <button type="button" id="pokeMaster" class="btn btn-secondary">add pokeMaster</button>
-                                    <button type="button" id="mashdamman" class="btn btn-secondary">add mashdamman</button>
-                                    <button type="button" id="bugganator" class="btn btn-secondary">add the bugganator</button>
-                                    <button type="button" id="SamuraiJack" class="btn btn-secondary">add Samurai jack</button>
+                                    <button type="button" sv-click="addPokeMaster" id="pokeMaster" class="btn btn-secondary">add pokeMaster</button>
+                                    <button type="button" sv-click="addMashdamman" id="mashdamman" class="btn btn-secondary">add mashdamman</button>
+                                    <button type="button" sv-click="addBugganator" id="bugganator" class="btn btn-secondary">add the bugganator</button>
+                                    <button type="button" sv-click="addSamuraiJack" id="SamuraiJack" class="btn btn-secondary">add Samurai jack</button>
                                 </div>
-                                    
+                                <h2>update score</h2>
                                 <form>
                                     <div class="form-group">
                                     <label for="scoreInput">score</label>
@@ -40,7 +58,7 @@
                                         <option>empty</option>
                                     </select>
                                     </div>
-                                    <button type="button" class="btn btn-success btn-lg" id="updateScore">Update score</button>
+                                    <button type="button" sv-click="updateScore" class="btn btn-success btn-lg" id="updateScore">Update score</button>
                                 </form>
                           </div>
                           <div class="col-sm">
@@ -80,18 +98,14 @@
 
 <script>
 
-var addPokeMasterButton = document.querySelector('#pokeMaster');
-var addMashdammanButton = document.querySelector('#mashdamman');
-var addBugganatorButton = document.querySelector('#bugganator');
-var addSamuraiJackButton = document.querySelector('#SamuraiJack');
-
+var svModule = document.querySelectorAll('input[sv-module]');
+var svClick = document.querySelectorAll('[sv-click]');
 
 var scoreInput = document.querySelector('#scoreInput');
 var playerSelect = document.querySelector('#playerSelect');
 
 var resetGameButton = document.querySelector('#resetGame');
 var startGameButton = document.querySelector('#startGame');
-var updateScore = document.querySelector('#updateScore');
 
 var activePlayersList = document.querySelector('#activePlayersList');
 var currentData = document.querySelector('#currentData');
@@ -105,6 +119,8 @@ const connection = new WebSocket(url)
 
 var ranking;
 var activePlayers;
+var dataModel = {};
+var clickHandlers = {}
 
 connection.onopen = () => {
   console.log('open');
@@ -136,10 +152,7 @@ connection.onmessage = e => {
     });
 }
 
-updateScore.addEventListener("click", function(e){
-    e.preventDefault();
-    connection.send(`{"eventName": "updatePlayerScore", "player": {"nickName": "${playerSelect.value}", "score":${scoreInput.value} }}`);
-});
+
 
 startGameButton.addEventListener("click", function(e){
     e.preventDefault();
@@ -151,32 +164,40 @@ resetGameButton.addEventListener("click", function(e){
     connection.send('{"eventName": "resetGame"}');
 });
 
-
-
-
-
-
-
-
-addPokeMasterButton.addEventListener("click", function(e){
-    e.preventDefault();
+clickHandlers.updateScore = function(e){
+    connection.send(`{"eventName": "updatePlayerScore", "player": {"nickName": "${playerSelect.value}", "score":${scoreInput.value} }}`);  
+}
+clickHandlers.addPokeMaster = function(e) {
     connection.send('{"eventName": "addNewPlayer", "player": {"nickName": "pokeMaster","fullName": "ash ketchum", "email": "ash.ketchum@gmail.com"}}');
-});
-addMashdammanButton.addEventListener("click", function(e){
-    e.preventDefault();
+}
+clickHandlers.addMashdamman = function(e) {
     connection.send('{"eventName": "addNewPlayer", "player": {"nickName": "mashdamman","fullName": "molly malone", "email": "molly.malone@gmail.com"}}');
-});
-addBugganatorButton.addEventListener("click", function(e){
-    e.preventDefault();
+}
+clickHandlers.addBugganator = function(e) {
     connection.send('{"eventName": "addNewPlayer", "player": {"nickName": "bugganator","fullName": "natalia zwamata", "email": "natalia.zwamata@gmail.com"}}');
-});
-addSamuraiJackButton.addEventListener("click", function(e){
-    e.preventDefault();
+}
+
+clickHandlers.addSamuraiJack = function(e) {
     connection.send('{"eventName": "addNewPlayer", "player": {"nickName": "samurai jack","fullName": "hosi san", "email": "hosi.san@gmail.com"}}');
-});
+}
+
+clickHandlers.submitNewPlayer = function(e) {
+    connection.send(`{"eventName": "addNewPlayer", "player": {"nickName": "${dataModel.nickName}","fullName": "${dataModel.fullName}", "email": "${dataModel.email}"}}`);
+}
 
 
+var inputHandler = function(e){
+    dataModel[e.target.getAttribute('sv-module')] = e.target.value;
+}
+var clickHandler = function(e){
+    e.preventDefault();
+    clickHandlers[e.target.getAttribute('sv-click')]();
+}
+svModule.forEach(function(element){element.oninput = inputHandler})
+svClick.forEach(function(element){
+    element.addEventListener("click", clickHandlers[element.getAttribute('sv-click')])
 
+})
 
 
 </script>
