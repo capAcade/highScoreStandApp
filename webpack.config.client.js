@@ -1,5 +1,5 @@
 const path = require('path');
-// const CopyPlugin = require('copy-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -17,9 +17,10 @@ module.exports = {
       filename: 'adminDash.html',
       inject: 'body',
     })
-    // new CopyPlugin([
-    //   { from: 'src/client/index.html', to: '' },
-    //   { from: 'src/client/adminDash.html', to: '' },
-    // ]),
+    new CopyPlugin([
+      { from: 'src/client/index.html', to: '' },
+//      { from: 'src/client/adminDash.html', to: '' },
+      { from: 'node_modules/capmangalaxy/docs', to: 'game' }
+    ]),
   ],
 };

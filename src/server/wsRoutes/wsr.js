@@ -1,4 +1,4 @@
-const WebSocket = require('ws');
+const WebSocket = require('ws')
 
 export default class WebS {
   constructor(config) {
@@ -13,6 +13,7 @@ export default class WebS {
           this.events[msg.eventName](msg, ws);
         } catch(e) {
           console.log('There is a stupid who isn\'t sending json data!!!'.bgRed.white);
+          console.log('Warning got a message that was not a json', e)
         }
       });
     });
@@ -28,4 +29,6 @@ export default class WebS {
   onEvent(name, cb) {
     this.events[name] = cb;
   }
+}
+
 }

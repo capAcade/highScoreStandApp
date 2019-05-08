@@ -20,7 +20,8 @@ console.log(`
  //**    ** **////** /**///  /**   /    /** **////**  /**  /**
   //****** //********/**     /**        /**//******** ***  /**
    //////   //////// //      //         //  //////// ///   // 
-`.blue);
+   \x1b[0m`);
+
 
 const config = {
     portWebApi: 8080,
@@ -47,7 +48,7 @@ wsApp.onEvent('addNewPlayer', (data, ws) => {
     storage.savePlayer(player);
     activePlayers.push({ player, ws});
     ranking.push(player);
-    ws.send(JSON.stringify({message: 'added player'}));
+    updateRanking();
 });
 
 wsApp.onEvent('updatePlayerScore', (data, ws) => {
