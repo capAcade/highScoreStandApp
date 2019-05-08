@@ -19,7 +19,7 @@ module.exports = {
     }),
     new CopyPlugin([
       { from: 'src/client/index.html', to: '' },
-//      { from: 'src/client/adminDash.html', to: '' },
+      // { from: 'src/client/adminDash.html', to: '' },
       { from: 'node_modules/capmangalaxy/docs', to: 'game' }
     ]),
   ],

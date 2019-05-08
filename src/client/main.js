@@ -28,24 +28,26 @@ connection.onerror = error => {
 connection.onmessage = e => {
     let data = JSON.parse(e.data);
     console.log(data);
-    ranking = data.ranking;
-    activePlayers = data.activePlayers;
+    if (data && data.ranking && data.activePlayers) {
+        ranking = data.ranking;
+        activePlayers = data.activePlayers;
 
-    currentData.innerHTML = '';
-    activePlayersList.innerHTML = '';
-    playerSelect.innerHTML = '';
+        currentData.innerHTML = '';
+        activePlayersList.innerHTML = '';
+        playerSelect.innerHTML = '';
 
-    ranking.forEach((element, index) => {
-        currentData.innerHTML = currentData.innerHTML +
-            `<li>nickname: ${element.nickName} score: ${element.score} email: ${element.email}</li>`
-        playerSelect.innerHTML = playerSelect.innerHTML +
-            `<option ${index === 0 ? 'selected ' : '' }value="${element.nickName}">${element.nickName}</option>`;
-    });
+        ranking.forEach((element, index) => {
+            currentData.innerHTML = currentData.innerHTML +
+                `<li>nickname: ${element.nickName} score: ${element.score} email: ${element.email}</li>`
+            playerSelect.innerHTML = playerSelect.innerHTML +
+                `<option ${index === 0 ? 'selected ' : '' }value="${element.nickName}">${element.nickName}</option>`;
+        });
 
-    activePlayers.forEach(element => {
-        activePlayersList.innerHTML = activePlayersList.innerHTML +
-            `<li>nickname: ${element.player.nickName} score: ${element.player.score} email: ${element.player.email}</li>`
-    });
+        activePlayers.forEach(element => {
+            activePlayersList.innerHTML = activePlayersList.innerHTML +
+                `<li>nickname: ${element.player.nickName} score: ${element.player.score} email: ${element.player.email}</li>`
+        });
+    }
 }
 
 clickHandlers.startGame = function (e) {
