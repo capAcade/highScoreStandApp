@@ -24,6 +24,7 @@
   "dependencies": {
     "bad-words": "^3.0.2",
     "express": "^4.16.4",
+    "capmangalaxy": "git+https://git@github.com/capAcade/capManGalaxy.git#infinityMode",
     "ws": "^7.0.0"
   },
   "devDependencies": {
