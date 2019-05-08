@@ -44,16 +44,20 @@ const updateRanking = function () {
 };
 
 wsApp.onEvent('addNewPlayer', (data, ws) => {
-    let player = new Player(filter.clean(data.player.nickName), data.player.fullName, data.player.email);
+    const player = new Player(filter.clean(data.player.nickName), data.player.fullName, data.player.email);
     storage.savePlayer(player);
     activePlayers.push({ player, ws});
-    console.log('ranking', ranking, typeof ranking)
     ranking.push(player);
     updateRanking();
 });
 
+wsApp.onEvent('gameOverPlayer', (data, ws) => {
+    activePlayers = activePlayers.filter(element => element.player.nickName !== data.player.nickName);
+    updateRanking();
+});
+
 wsApp.onEvent('updatePlayerScore', (data, ws) => {
-    let player = activePlayers.filter(element => element.player.nickName === data.player.nickName)[0].player;
+    const player = activePlayers.filter(element => element.player.nickName === data.player.nickName)[0].player;
     player.score = data.player.score;
     updateRanking();
 });
