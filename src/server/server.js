@@ -66,3 +66,10 @@ wsApp.onEvent('resetGame', (data, ws) =>{
     wsApp.broadCastToClients({eventName: 'resetGame'});
     updateRanking();
 });
+
+wsApp.onEvent('playerGameOver', (data, ws) =>{
+    let player = activePlayers.filter(element => element.player.nickName === data.player.nickName)[0].player;
+    player.status = 'GAMEOVER';
+    ws.close();
+    updateRanking();
+});
