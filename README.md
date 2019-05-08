@@ -54,3 +54,4 @@ What to do:
 | game over functionality ws needs to be closed and removed from active player list  | Sven          |                        |
 | Create admin dashboard to follow players+ranking and start game                    | Sven          | :white_check_mark:     |
 | load JSON file on startup with stub data/ or actual saved data                     | Serge         |                        |
+| Keep websocket connections alive functionality                                     |               |                        |
