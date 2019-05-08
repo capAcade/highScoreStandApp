@@ -1,0 +1,28 @@
+body {
+    background: url('C:/Users/epetri/Desktop/highScoreStandApp/stuff/Scoreboard/Assets/CapmanScoreboardBG.png') center no-repeat;
+    background-size: cover;
+    background-position-x: inherit;
+    position: relative;
+    align-content: center;
+    display: flex;
+}
+
+#rotate{
+transform: rotate(-90deg);
+margin-left: 125px;
+max-width: 730px;
+}
+
+.scoretitles {
+    margin: 300px 0 0;
+    text-transform: capitalize;
+    display: flex;
+    justify-content: space-between;
+}
+
+h2{
+    font-size: 25px;
+    display: inline;
+    padding: 1.5em;
+}
+

@@ -1,26 +1,44 @@
-hi
-kaas
-jjj
+<html lang="en">
 
-jhbubuyb
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="score.css">
+  <title>Capman Scoreboard</title>
+</head>
+
+<body>
+  <div id="rotate">
+  <div class="scoretitles">
+    <h2 class="pltitle">Current Players</h2>
+    <h2 class="sctitle">Highscores</h2>
+  </div>
+  <ul class="playernames">
+    <li></li>
+  </ul>
+  <ul class="playerscores">
+      <li></li>
+    </ul>
+  </div>
+</body>
+
+</html>
 <script>
+  const url = 'ws://localhost:8081/scoreBroadcast'
+  const connection = new WebSocket(url)
+  let ranking;
+  console.log('kom ik hier');
+  connection.onopen = () => {
+    console.log('open');
+    //connection.send('hey')
+  }
 
-const url = 'ws://localhost:8081/scoreBroadcast'
-const connection = new WebSocket(url)
-let ranking;
-console.log('kom ik hier');
-connection.onopen = () => {
-  console.log('open');
-  //connection.send('hey')
-}
+  connection.onerror = error => {
+    console.log(`WebSocket error: ${error}`)
+  }
 
-connection.onerror = error => {
-  console.log(`WebSocket error: ${error}`)
-}
-
-connection.onmessage = e => {
+  connection.onmessage = e => {
     ranking = e.data;
-  console.log(e.data)
-}
-
+    console.log(e.data)
+  }
 </script>
