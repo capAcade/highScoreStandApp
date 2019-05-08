@@ -14,12 +14,19 @@ class Storage {
         fs.appendFileSync(playersFile, `${JSON.stringify(player)}\r\n`);
     }
 
-    saveHighScores() {
-
+    saveHighScores(highScores) {
+        fs.writeFileSync(highScoresFile, JSON.stringify(highScores));
     }
 
     getHighScores() {
-
+        if (fs.existsSync(highScoresFile)) {
+            console.log('test');
+            const data = fs.readFileSync(highScoresFile, 'utf8');
+console.log(data, JSON.parse(data));
+            return data ? JSON.parse(data) : [];
+        } else {
+            return [];
+        }
     }
 }
 

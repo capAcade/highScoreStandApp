@@ -16,7 +16,7 @@ module.exports = {
       template: 'src/client/adminDash.html',
       filename: 'adminDash.html',
       inject: 'body',
-    })
+    }),
     new CopyPlugin([
       { from: 'src/client/index.html', to: '' },
 //      { from: 'src/client/adminDash.html', to: '' },

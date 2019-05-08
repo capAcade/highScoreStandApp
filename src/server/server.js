@@ -8,7 +8,7 @@ import storage from './storage';
 
 const filter = new Filter({ placeHolder: 'x' });
 let activePlayers = [];
-let ranking = [];
+let ranking = storage.getHighScores();
 
 console.log(',.-~*´¨¯¨`*·~-.¸-(Booting_up_the_awsomeness)-,.-~*´¨¯¨`*·~-.¸'.yellow);
 console.log(`
@@ -20,8 +20,7 @@ console.log(`
  //**    ** **////** /**///  /**   /    /** **////**  /**  /**
   //****** //********/**     /**        /**//******** ***  /**
    //////   //////// //      //         //  //////// ///   // 
-   \x1b[0m`);
-
+`.rainbow);
 
 const config = {
     portWebApi: 8080,
@@ -36,6 +35,7 @@ const updateRanking = function () {
     ranking.sort(function (a, b) {
         return a.score - b.score;
     }).reverse();
+    storage.saveHighScores(ranking);
 
     activePlayers.sort(function (a, b) {
         return a.score - b.score;
@@ -47,6 +47,7 @@ wsApp.onEvent('addNewPlayer', (data, ws) => {
     let player = new Player(filter.clean(data.player.nickName), data.player.fullName, data.player.email);
     storage.savePlayer(player);
     activePlayers.push({ player, ws});
+    console.log('ranking', ranking, typeof ranking)
     ranking.push(player);
     updateRanking();
 });
@@ -54,6 +55,10 @@ wsApp.onEvent('addNewPlayer', (data, ws) => {
 wsApp.onEvent('updatePlayerScore', (data, ws) => {
     let player = activePlayers.filter(element => element.player.nickName === data.player.nickName)[0].player;
     player.score = data.player.score;
+    updateRanking();
+});
+
+wsApp.onEvent('refresh', (data, ws) => {
     updateRanking();
 });
 
