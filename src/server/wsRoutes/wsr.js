@@ -8,10 +8,11 @@ export default class WebS {
     this.wss.on('connection', ws => {
       ws.on('message', message => {
         try {
+          console.log('message: ', message);
           message = JSON.parse(message);
           this.events[message.eventName](message, ws);
         } catch (e) {
-          console.log('Warning got a message that was not a json')
+          console.log('Warning got a message that was not a json', e)
         }
       })
     });
