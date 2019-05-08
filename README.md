@@ -50,7 +50,7 @@ What to do:
 | making front end score board                                                       | Esther        |                        |
 | Making front end filling in player info                                            | Karin         |                        |
 | Making backend for saving data can be just json file                               | Serge         |                        |
-| Adding Space invaders game + sending score updates to ba                           |               |                        |
+| Adding Space invaders game + sending score updates to ba                           | Sven          |                        |
 | game over functionality ws needs to be closed and removed from active player list  |               |                        |
 | Create admin dashboard to follow players+ranking and start game                    | Sven          | :white_check_mark:     |
 | load JSON file on startup with stub data/ or actual saved data                     | Serge         |                        |
