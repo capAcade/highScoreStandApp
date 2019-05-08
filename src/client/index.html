@@ -1,26 +1,14 @@
-hi
-kaas
-jjj
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-jhbubuyb
-<script>
-
-const url = 'ws://localhost:8081/scoreBroadcast'
-const connection = new WebSocket(url)
-let ranking;
-console.log('kom ik hier');
-connection.onopen = () => {
-  console.log('open');
-  //connection.send('hey')
-}
-
-connection.onerror = error => {
-  console.log(`WebSocket error: ${error}`);
-}
-
-connection.onmessage = e => {
-    ranking = e.data;
-  console.log(e.data)
-}
-
-</script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+   test
+</body>
+</html>

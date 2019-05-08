@@ -20,9 +20,7 @@ class Storage {
 
     getHighScores() {
         if (fs.existsSync(highScoresFile)) {
-            console.log('test');
             const data = fs.readFileSync(highScoresFile, 'utf8');
-console.log(data, JSON.parse(data));
             return data ? JSON.parse(data) : [];
         } else {
             return [];

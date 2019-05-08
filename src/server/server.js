@@ -44,6 +44,12 @@ const updateRanking = function () {
 };
 
 wsApp.onEvent('addNewPlayer', (data, ws) => {
+    console.log('actives', activePlayers.filter(element => element.player.nickName === data.player.nickName));
+    const exists = activePlayers.filter(element => element.player.nickName === data.player.nickName).length !== 0;
+    if (exists) {
+        data.player.nickName += activePlayers.length;
+        ws.send(`{ "eventName": "addNewPlayer", "nickname": "${data.player.nickName}"}`);
+    }
     const player = new Player(filter.clean(data.player.nickName), data.player.fullName, data.player.email);
     storage.savePlayer(player);
     activePlayers.push({ player, ws});
