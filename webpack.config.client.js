@@ -18,6 +18,15 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: /\.(png|jpe?g|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {},
+          },
+        ],
+      },
     ],
   },
   plugins: [
@@ -35,7 +44,8 @@ module.exports = {
       inject: 'body',
     }),
     new CopyPlugin([
-      { from: 'node_modules/capmangalaxy/docs', to: 'game' }
+      { from: 'node_modules/capmangalaxy/docs', to: 'game' },
+      { from: 'assets', to: 'assets' }
     ]),
   ],
 };
