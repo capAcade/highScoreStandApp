@@ -57,11 +57,6 @@ wsApp.onEvent('addNewPlayer', (data, ws) => {
     updateRanking();
 });
 
-wsApp.onEvent('gameOverPlayer', (data, ws) => {
-    activePlayers = activePlayers.filter(element => element.player.nickName !== data.player.nickName);
-    updateRanking();
-});
-
 wsApp.onEvent('updatePlayerScore', (data, ws) => {
     const player = activePlayers.filter(element => element.player.nickName === data.player.nickName)[0].player;
     player.score = data.player.score;
