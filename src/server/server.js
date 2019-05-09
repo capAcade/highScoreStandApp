@@ -72,8 +72,9 @@ wsApp.onEvent('startGame', (data, ws) => {
 });
 
 wsApp.onEvent('resetGame', (data, ws) => {
-    activePlayers = [];
     wsApp.broadCastToClients({ eventName: 'resetGame' });
+    activePlayers.forEach(({player, ws})=>{ws.close()});
+    activePlayers = [];
     updateRanking();
 });
 
