@@ -55,3 +55,5 @@ What to do:
 | Create admin dashboard to follow players+ranking and start game                    | Sven          | :white_check_mark:     |
 | load JSON file on startup with stub data/ or actual saved data                     | Serge         | :white_check_mark:     |
 | Keep websocket connections alive functionality                                     | Sven          |                        |
+| Add configuration for dashboard and admin dashboard                                | Serge         | :white_check_mark:     |
+| Check for duplicate active nicknames                                               | Serge         | :white_check_mark:     |
