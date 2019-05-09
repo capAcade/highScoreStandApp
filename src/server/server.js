@@ -80,6 +80,6 @@ wsApp.onEvent('resetGame', (data, ws) => {
 wsApp.onEvent('playerGameOver', (data, ws) =>{
     let player = activePlayers.filter(element => element.player.nickName === data.player.nickName)[0].player;
     player.status = 'GAMEOVER';
-    ws.close();
+    ws.send(JSON.stringify(data));
     updateRanking();
 });
