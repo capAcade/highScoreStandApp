@@ -12,6 +12,14 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist/public'),
   },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
+  },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Dashoard',
