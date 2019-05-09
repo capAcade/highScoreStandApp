@@ -1,5 +1,5 @@
 const path = require('path');
-const NodemonPlugin = require( 'nodemon-webpack-plugin' )
+const NodemonPlugin = require('nodemon-webpack-plugin');
 
 module.exports = {
   entry: './src/server/server.js',
@@ -10,9 +10,9 @@ module.exports = {
   mode: 'development',
   output: {
     filename: 'server.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
   },
   plugins: [
     new NodemonPlugin(),
-],
+  ],
 };

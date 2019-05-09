@@ -1,4 +1,4 @@
-module.exports = class Player {
+export default class Player {
     constructor(nickName, fullName, email) {
         this.nickName = nickName;
         this.fullName = fullName;
