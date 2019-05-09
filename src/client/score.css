@@ -1,0 +1,56 @@
+@font-face {
+    font-family: "8bit";
+    src: url("C:/Users/epetri/Desktop/highScoreStandApp/stuff/Scoreboard/Assets/Fonts/8-BIT\ WONDER.TTF");
+}
+
+body {
+    background: url('C:/Users/epetri/Desktop/highScoreStandApp/stuff/Scoreboard/Assets/CapmanScoreboardBG.png') center no-repeat;
+    background-size: cover;
+    background-position-x: inherit;
+    position: relative;
+    align-content: center;
+    display: flex;
+    font-family: '8bit';
+}
+
+#rotate {
+    margin: 45vw auto;
+    width: 80%;
+}
+
+.scoretitles {
+    text-transform: capitalize;
+    display: flex;
+    justify-content: space-between;
+}
+
+h2, p {
+    font-size: 24px;
+    display: inline;
+}
+
+.pltitle {
+    color: #7BDCFB;
+    padding-right: 2em;
+}
+
+.sctitle {
+    color: #8CE96B;
+    padding-left: 2em;
+}
+
+ul {
+    color: #fff;
+    margin-top: 50px;
+    padding: 0 0 50px;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+}
+
+.top {
+    padding-top: 50px;
+    border-top: solid 2px #7BDCFB;
+}
