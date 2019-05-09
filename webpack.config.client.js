@@ -13,21 +13,28 @@ module.exports = {
     path: path.resolve(__dirname, 'dist/public'),
   },
   module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
-      },
-      {
-        test: /\.(png|jpe?g|gif)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {},
+    rules: [{
+      test: /\.ttf$/,
+      use: [
+        {
+          loader: 'ttf-loader',
+          options: {
+            name: './font/[hash].[ext]',
           },
-        ],
-      },
-    ],
+        },
+      ]
+    }, {
+      test: /\.css$/,
+      use: ['style-loader', 'css-loader'],
+    }, {
+      test: /\.(png|jpe?g|gif)$/,
+      use: [
+        {
+          loader: 'file-loader',
+          options: {},
+        },
+      ],
+    }],
   },
   plugins: [
     new HtmlWebpackPlugin({

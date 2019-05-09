@@ -44,7 +44,7 @@ const updateRanking = function () {
 };
 
 wsApp.onEvent('addNewPlayer', (data, ws) => {
-    const nickName = filter.clean(data.player.nickName);
+    let nickName = filter.clean(data.player.nickName);
     const exists = activePlayers.filter(element => element.player.nickName === nickName).length !== 0;
     if (exists) {
         nickName += activePlayers.length;
