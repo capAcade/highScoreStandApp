@@ -46,14 +46,15 @@ npm run build:ba
 What to do:
 
 | Task                                                                               | Who is onit?  | Done                   |
-| ---------------------------------------------------------------------------------- |:-------------:| :---------------------:|
-| making front end score board                                                       | Esther        |                        |
-| Making front end filling in player info                                            | Karin         |                        |
-| Making backend for saving data can be just json file                               | Serge         | :white_check_mark:     |
-| Adding Space invaders game + sending score updates to ba                           | Sven          | :white_check_mark:     |
-| game over functionality ws needs to be closed and removed from active player list  | Sven          | :white_check_mark:     |
-| Create admin dashboard to follow players+ranking and start game                    | Sven          | :white_check_mark:     |
-| load JSON file on startup with stub data/ or actual saved data                     | Serge         | :white_check_mark:     |
-| Keep websocket connections alive functionality                                     | Sven          | :white_check_mark:     |
-| Add configuration for dashboard and admin dashboard                                | Serge         | :white_check_mark:     |
-| Check for duplicate active nicknames                                               | Serge         | :white_check_mark:     |
+| ----------------------------------------------------------------------- |:-------------:| :---------------------:|
+| making front end score board                                            | Esther        |                        |
+| Making front end filling in player info                                 | Karin         | :white_check_mark:     |
+| Add waiting and game over screens                                       | Karin         | :white_check_mark:     |
+| Making backend for saving data can be just json file                    | Serge         | :white_check_mark:     |
+| Adding Space invaders game + sending score updates to ba                | Sven          | :white_check_mark:     |
+| Game over functionality player removed from active player list          | Sven          | :white_check_mark:     |
+| Create admin dashboard to follow players+ranking and start game         | Sven          | :white_check_mark:     |
+| load JSON file on startup with stub data/ or actual saved data          | Serge         | :white_check_mark:     |
+| Keep websocket connections alive functionality                          | Sven          | :white_check_mark:     |
+| Add configuration for dashboard and admin dashboard                     | Serge         | :white_check_mark:     |
+| Check for duplicate active nicknames                                    | Serge         | :white_check_mark:     |
