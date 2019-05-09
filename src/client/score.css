@@ -1,10 +1,10 @@
 @font-face {
     font-family: "8bit";
-    /* src: url("C:/Users/epetri/Desktop/highScoreStandApp/stuff/Scoreboard/Assets/Fonts/8-BIT\ WONDER.TTF"); */
+    src: url("/assets/Fonts/8-BIT-WONDER.TTF");
 }
 
 body {
-    /* background: url('C:/Users/epetri/Desktop/highScoreStandApp/stuff/Scoreboard/Assets/CapmanScoreboardBG.png') center no-repeat; */
+    background: url('/assets/CapmanScoreboardBG.png') center no-repeat;
     background-size: cover;
     background-position-x: inherit;
     position: relative;
