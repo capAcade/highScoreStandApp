@@ -13,28 +13,21 @@ module.exports = {
     path: path.resolve(__dirname, 'dist/public'),
   },
   module: {
-    rules: [{
-      test: /\.ttf$/,
-      use: [
-        {
-          loader: 'ttf-loader',
-          options: {
-            name: './font/[hash].[ext]',
+    rules: [
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {},
           },
-        },
-      ]
-    }, {
-      test: /\.css$/,
-      use: ['style-loader', 'css-loader'],
-    }, {
-      test: /\.(png|jpe?g|gif)$/,
-      use: [
-        {
-          loader: 'file-loader',
-          options: {},
-        },
-      ],
-    }],
+        ],
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -43,8 +36,7 @@ module.exports = {
       filename: 'index.html',
       chunks: ['index'],
       inject: 'body',
-    }),
-    new HtmlWebpackPlugin({
+    }, {
       title: 'Admin dashboard',
       template: 'src/client/adminDash.html',
       filename: 'adminDash.html',
