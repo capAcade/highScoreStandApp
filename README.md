@@ -45,7 +45,7 @@ npm run build:ba
 
 What to do:
 
-| Task                                                                               | Who is onit?  | Done                   |
+| Task                                                                    | Who is onit?  | Done                   |
 | ----------------------------------------------------------------------- |:-------------:| :---------------------:|
 | making front end score board                                            | Esther        |                        |
 | Making front end filling in player info                                 | Karin         | :white_check_mark:     |
@@ -58,3 +58,15 @@ What to do:
 | Keep websocket connections alive functionality                          | Sven          | :white_check_mark:     |
 | Add configuration for dashboard and admin dashboard                     | Serge         | :white_check_mark:     |
 | Check for duplicate active nicknames                                    | Serge         | :white_check_mark:     |
+
+| bugs and extra's                                                        | Who is onit?  | Done                   |
+| ----------------------------------------------------------------------- |:-------------:| :---------------------:|
+| Input names spelling && placeholders tell whart to fill in              | sven          |                        |
+| undefined score @ endgame                                               |               |                        |
+| bugs flying out of screen                                               |               |                        |
+| bugs speed and bullets changes                                          |               |                        |
+| #Feature game ignore game start signal  URL atribute ignoreGameStart    |               |                        |
+| #Feature fire speed upgrade                                             |               |                        |
+| #Feature score timer                                                    |               |                        |
+| #Feature new logo in game                                               | sven          |                        |
+| #Feature nickname on top of game                                        |               |                        |
