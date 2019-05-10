@@ -31,14 +31,14 @@ connection.onmessage = e => {
         currentData.innerHTML = '';
         activePlayersList.innerHTML = '';
 
-        ranking.forEach((element, index) => {
+        ranking.slice(0,10).forEach((element, index) => {
             currentData.innerHTML = currentData.innerHTML +
-                ` <li><p class="playername"> ${element.nickName} </p><p class="playerscore"> ${element.score} </p></li>`
+                ` <li><span class="ranking">${index + 1}</span><p class="playername"> ${element.nickName} </p><p class="playerscore"> ${element.score} </p></li>`
         });
 
         activePlayers.forEach(element => {
             activePlayersList.innerHTML = activePlayersList.innerHTML +
-                `<li><p class="playername">${element.player.nickName}</p><p class="playerscore"> ${element.player.score}</p></li>`
+                `<li><p class="playername"><span class="ranking">${index}</span>${element.player.nickName}</p><p class="playerscore"> ${element.player.score}</p></li>`
         });
     }
-}
+};
