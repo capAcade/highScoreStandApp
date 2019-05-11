@@ -62,11 +62,11 @@ What to do:
 | bugs and extra's                                                        | Who is onit?  | Done                   |
 | ----------------------------------------------------------------------- |:-------------:| :---------------------:|
 | Input names spelling && placeholders tell whart to fill in              | sven          | :white_check_mark:     |
-| undefined score @ endgame                                               | sven          | :white_check_mark:     |
+| undefined score @ endgame                                               | Karin         | :white_check_mark:     |
 | bugs flying out of screen                                               | sven          |                        |
 | bugs speed and bullets changes                                          | sven          |                        |
 | #Feature game ignore game start signal  URL atribute ignoreGameStart    |               |                        |
 | #Feature fire speed upgrade                                             |               |                        |
 | #Feature score timer                                                    |               |                        |
 | #Feature new logo in game                                               | sven          | :white_check_mark:     |
-| #Feature nickname on top of game                                        |               |                        |
+| #Feature nickname on top of game                                        | Karin         | :white_check_mark:     |
