@@ -65,8 +65,8 @@ What to do:
 | undefined score @ endgame                                               | Karin         | :white_check_mark:     |
 | bugs flying out of screen                                               | Sven          |                        |
 | bugs speed and bullets changes                                          | Sven          |                        |
-| #Feature update rename nickname during game                             | Serge         |                        |
-| #Feature game ignore game start signal  URL atribute ignoreGameStart    |               |                        |
+| #Feature update rename nickname during game                             | Serge         | :white_check_mark:     |
+| #Feature game ignore game start signal URL atribute ignoreGameStart     |               |                        |
 | #Feature fire speed upgrade                                             |               |                        |
 | #Feature score timer                                                    |               |                        |
 | #Feature new logo in game                                               | Sven          | :white_check_mark:     |
