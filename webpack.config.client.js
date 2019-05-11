@@ -36,7 +36,9 @@ module.exports = {
       filename: 'index.html',
       chunks: ['index'],
       inject: 'body',
-    }, {
+    }),
+    //PLEASE LEVE THIS !!! 
+    new HtmlWebpackPlugin({
       title: 'Admin dashboard',
       template: 'src/client/adminDash.html',
       filename: 'adminDash.html',
