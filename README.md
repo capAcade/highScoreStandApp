@@ -66,7 +66,7 @@ What to do:
 | bugs flying out of screen                                               | Sven          |                        |
 | bugs speed and bullets changes                                          | Sven          |                        |
 | #Feature update rename nickname during game                             | Serge         | :white_check_mark:     |
-| #Feature game ignore game start signal URL atribute ignoreGameStart     |               |                        |
+| #Feature game ignore game start signal URL atribute ignoreGameStart     | Sven          | :white_check_mark:     |
 | #Feature fire speed upgrade                                             |               |                        |
 | #Feature score timer                                                    |               |                        |
 | #Feature new logo in game                                               | Sven          | :white_check_mark:     |
