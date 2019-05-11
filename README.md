@@ -71,3 +71,4 @@ What to do:
 | #Feature score timer                                                    |               |                        |
 | #Feature new logo in game                                               | Sven          | :white_check_mark:     |
 | #Feature nickname on top of game                                        | Karin         | :white_check_mark:     |
+| #Bug remove inactive players from active player list                    | Serge         |                        |
