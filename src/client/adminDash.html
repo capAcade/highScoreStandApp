@@ -27,14 +27,12 @@
                         <input type="text" sv-module="email" class="form-control" id="email" placeholder="bla@bla.com">
                     </div>
                     <div class="form-group">
-                        <label for="nickName">nickname</label>
-                        <input type="text" sv-module="nickName" class="form-control" id="nickName"
-                            placeholder="coolName">
+                        <label for="nickName">nickName</label>
+                        <input type="text" sv-module="nickName" class="form-control" id="nickName" placeholder="coolName">
                     </div>
                     <div class="form-group">
                         <label for="fullName">fullname</label>
-                        <input type="text" sv-module="fullName" class="form-control" id="fullName"
-                            placeholder="yolo lala">
+                        <input type="text" sv-module="fullName" class="form-control" id="fullName" placeholder="yolo lala">
                     </div>
                     <button type="button" sv-click="submitNewPlayer" class="btn btn-success btn-lg" id="addPlayer">add
                         Player</button>
@@ -42,7 +40,7 @@
 
             </div>
             <div class="col-sm">
-                <h2>add Stub players</h2>
+                <h2>Add Stub players</h2>
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <button type="button" sv-click="addPokeMaster" id="pokeMaster" class="btn btn-secondary">add
                         pokeMaster</button>
@@ -53,20 +51,28 @@
                     <button type="button" sv-click="addSamuraiJack" id="SamuraiJack" class="btn btn-secondary">add
                         Samurai jack</button>
                 </div>
-                <h2>update score</h2>
+                <h2>Update score</h2>
                 <form>
+                    <div class="form-group">
+                        <label for="playerSelect">player</label>
+                        <select class="form-control" sv-module="selectNickName" id="playerSelect">
+                            <option>empty</option>
+                        </select>
+                    </div>
                     <div class="form-group">
                         <label for="scoreInput">score</label>
                         <input type="number" sv-module="score" class="form-control" id="scoreInput" placeholder="0">
                     </div>
                     <div class="form-group">
-                        <label for="playerSelect">player</label>
-                        <select class="form-control" sv-module="selectNickname" id="playerSelect">
-                            <option>empty</option>
-                        </select>
+                        <label for="nicknameval">nickName</label>
+                        <input type="text" sv-module="nickName" class="form-control" id="nickName" placeholder="coolName">
                     </div>
-                    <button type="button" sv-click="updateScore" class="btn btn-success btn-lg" id="updateScore">Update
-                        score</button>
+                    <button type="button" sv-click="updateScore" class="btn btn-success btn-lg" id="updateScore">
+                        Update score
+                    </button>
+                    <button type="button" sv-click="updateNickname" class="btn btn-success btn-lg" id="updateNickname">
+                        Update nickName
+                    </button>
                 </form>
             </div>
             <div class="col-sm">
