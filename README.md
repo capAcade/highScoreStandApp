@@ -67,8 +67,8 @@ What to do:
 | bugs speed and bullets changes                                          | Sven          |                        |
 | #Feature update rename nickname during game                             | Serge         | :white_check_mark:     |
 | #Feature game ignore game start signal URL atribute ignoreGameStart     | Sven          | :white_check_mark:     |
-| #Feature fire speed upgrade                                             |               |                        |
-| #Feature score timer                                                    |               |                        |
+| #Feature fire speed upgrade                                             | Sven          | :white_check_mark:     |
+| #Feature score timer                                                    | Sven          | :white_check_mark:     |
 | #Feature new logo in game                                               | Sven          | :white_check_mark:     |
 | #Feature nickname on top of game                                        | Karin         | :white_check_mark:     |
 | #Bug remove inactive players from active player list                    | Serge         |                        |
