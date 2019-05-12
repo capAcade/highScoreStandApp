@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "npm run build:fe && npm run build:ba && node dist/server.js",
+    "clean:capmangalaxy": "rmdir node_modules\\capmangalaxy /s /q",
     "build:fe": "webpack --config webpack.config.client.js",
     "build:ba": "webpack --config webpack.config.server.js",
     "watch:ba": "webpack --config webpack.config.server.js --watch",

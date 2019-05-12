@@ -23,7 +23,6 @@ export default class WebS {
           }
         } catch(e) {
           console.log('There is a stupid who isn\'t sending json data!!!'.bgRed.white);
-          console.log('Warning got a message that was not a json', e)
         }
       });
     });
@@ -47,6 +46,7 @@ export default class WebS {
       }
     });
   }
+
   onEvent(name, cb) {
     this.events[name] = cb;
   }

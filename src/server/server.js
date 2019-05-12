@@ -43,12 +43,16 @@ const updateRanking = function () {
     wsApp.broadCastToClients({ ranking, activePlayers });
 };
 
+const updateNickName = ((ws, oldNickName, newNickName) => {
+    const nickNameChanged = oldNickName === newNickName;
+    ws.send(`{ "eventName": "addNewPlayer", "nickname": "${newNickName}", "b": ${nickNameChanged}}`);
+});
+
 wsApp.onEvent('addNewPlayer', (data, ws) => {
     let nickName = filter.clean(data.player.nickName);
     const exists = activePlayers.filter(element => element.player.nickName === nickName).length !== 0;
     if (exists) {
-        nickName += activePlayers.length;
-        ws.send(`{ "eventName": "addNewPlayer", "nickname": "${nickName}"}`);
+        updateNickName(ws, nickName, nickName += activePlayers.length);
     }
     const player = new Player(filter.clean(nickName), data.player.fullName, data.player.email);
     storage.savePlayer(player);
@@ -57,10 +61,27 @@ wsApp.onEvent('addNewPlayer', (data, ws) => {
     updateRanking();
 });
 
-wsApp.onEvent('updatePlayerScore', (data, ws) => {
-    const player = activePlayers.filter(element => element.player.nickName === data.player.nickName)[0].player;
-    player.score = data.player.score;
+wsApp.onEvent('updateNickName', (data, ws) => {
+    const players = activePlayers.filter(element => element.player.nickName === data.player.oldNickName);
+    let ShouldUpdateRanking = false;
+    if (players.length) {
+        players[0].player.nickName = data.player.newNickName;
+        updateNickName(players[0].ws, data.player.oldNickName, data.player.newNickName);
+    } else {
+        const player = ranking.filter(element => element.nickName === data.player.oldNickName)[0];
+        player.nickName = data.player.newNickName;
+    }
     updateRanking();
+});
+
+wsApp.onEvent('updatePlayerScore', (data, ws) => {
+    const players = activePlayers.filter(element => element.player.nickName === data.player.nickName);
+    if (players.length) {
+        players[0].player.score = data.player.score;
+        updateRanking();
+    } else {
+        console.log(`Player ${data.player.nickName} not found, something went wrong`.bgWhite.red);
+    }
 });
 
 wsApp.onEvent('refresh', (data, ws) => {
