@@ -25,7 +25,7 @@ body {
 }
 
 h2, p {
-    font-size: 24px;
+    font-size: 30px;
     display: inline;
 }
 
@@ -47,7 +47,6 @@ ul {
 
 li {
     display: flex;
-    justify-content: space-between;
 }
 
 .top {
@@ -55,7 +54,37 @@ li {
     border-top: solid 2px #7BDCFB;
 }
 
-span.ranking{
-    font-size: 24px;
+span.container{
+    display: flex;
+    overflow: hidden;
+    flex: 1;
+}
+
+p.playername {
+    margin: auto;
+}
+
+p.playerscore {
+    text-align: right;
+}
+
+p.dots {
+    overflow: hidden;
+}
+
+.ranking{
+    background: red;
+    margin-right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
     align-self: center;
+}
+
+
+.ranking p{
+    margin: auto;
 }
