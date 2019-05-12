@@ -6,15 +6,14 @@
 body {
     background: url('/assets/CapmanScoreboardBG.png') center no-repeat;
     background-size: cover;
-    background-position-x: inherit;
+    background-position-x: center;
     position: relative;
-    align-content: center;
     display: flex;
     font-family: '8bit';
 }
 
 #rotate {
-    margin: 45vw auto;
+    margin: 50vw auto 0;
     width: 80%;
 }
 
@@ -25,7 +24,7 @@ body {
 }
 
 h2, p {
-    font-size: 30px;
+    font-size: 22px;
     display: inline;
 }
 
@@ -41,7 +40,7 @@ h2, p {
 
 ul {
     color: #fff;
-    margin-top: 50px;
+    margin-top: 0;
     padding: 0 0 50px;
 }
 
@@ -74,9 +73,9 @@ p.dots {
 
 .ranking{
     background: red;
-    margin-right: 20px;
-    width: 60px;
-    height: 60px;
+    margin-right: 10px;
+    width: 40px;
+    height: 40px;
     border-radius: 30px;
     display: flex;
     align-content: center;
