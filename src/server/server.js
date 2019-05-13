@@ -32,16 +32,19 @@ const app = new Xpress(config);
 const wsApp = new WebS(config);
 
 const updateRanking = function () {
+    console.log('called')
     ranking.sort(function (a, b) {
         return a.score - b.score;
     }).reverse();
-    //storage.saveHighScores(ranking);
+    storage.saveHighScores(ranking);
 
     activePlayers.sort(function (a, b) {
         return a.score - b.score;
     }).reverse();
-    wsApp.broadCastToClients({ ranking, activePlayers });
+    //wsApp.broadCastToClients({ ranking, activePlayers });
 };
+
+
 
 const updateNickName = ((ws, oldNickName, newNickName) => {
     const nickNameChanged = oldNickName === newNickName;
@@ -108,3 +111,8 @@ wsApp.onEvent('playerGameOver', (data, ws) =>{
     ws.send(JSON.stringify(data));
     updateRanking();
 });
+
+setInterval(function(){
+    console.log('update broadcast');
+    wsApp.broadCastToClients({ ranking, activePlayers });
+}, 1000);
