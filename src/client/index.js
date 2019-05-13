@@ -11,8 +11,6 @@ const connection = new WebSocket(url)
 let ranking;
 let activePlayers;
 
-
-
 connection.onopen = () => {
     console.log('open');
     connection.send('{"eventName": "refresh"}');
@@ -35,25 +33,29 @@ connection.onmessage = e => {
         ranking.slice(0, 10).forEach((element, index) => {
 
             currentData.innerHTML = currentData.innerHTML +
-                ` <li><div class="ranking"><p>${index + 1}</p></div><span class="container"><p class="playername"> ${element.nickName}</p><p class="dots">...............................................................................................................</p><p class="playerscore"> ${element.score} </p></span></li>`
+                ` <li><div class="ranking"><p>${index + 1}</p></div><span class="container"><p class="playername"> ${element.nickName}</p><p class="dots">...............................................................................................................</p><p class="playerscore"> ${element.score} </p></span></li>`;
 
         });
-        
-        let nickname = ranking[0].nickName;
-        var score = parseInt(ranking[0].score);
-        var highscore = localStorage.getItem("highscore");
-        
-        if (score > highscore) {
-            alert('new winner' + nickname + score + highscore);
-            localStorage.setItem("highscore", score);
-        } else {
-            console.log('no changes');
 
+        let score = parseInt(ranking[0].score);
+        let highscore = localStorage.getItem("highscore");
+        let element = document.getElementById("alert");
+
+        if (score > highscore) {
+            console.log('new winner');
+            element.classList.add("doshow");
+            setTimeout(function(){
+                element.classList.remove("doshow");
+              }, 5000);
+            localStorage.setItem("highscore", score);
         }
 
         activePlayers.forEach((element, index) => {
             activePlayersList.innerHTML = activePlayersList.innerHTML +
-                `<li><div class="ranking"><p>${index + 1}</p></div><p class="playername">${element.player.nickName}</p><p class="dots">...............................................................................................................</p><p class="playerscore"> ${element.player.score}</p></li>`
+                `<li><div class="ranking"><p>${index + 1}</p></div><span class="container"><p class="playername">${element.player.nickName}</p><p class="dots">...............................................................................................................</p><p class="playerscore"> ${element.player.score}</p></span></li>`;
         });
     }
 };
+
+
+  

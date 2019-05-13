@@ -87,3 +87,94 @@ p.dots {
 .ranking p{
     margin: auto;
 }
+
+.noshow{
+display: none;
+}
+
+.doshow{
+    display: flex;
+    background: #0070AD;
+    padding: 74px 80px;
+    color: white;
+    border: #ffda6b 11px double;
+    box-shadow: 2px 2px 2px 2px grey;
+    position: relative;
+    bottom: 50%;
+}
+
+p#textcapman {
+    font-size: 60px;
+    padding-left: 20px;
+    line-height: 1.2em;
+}
+
+.imagecapman img {
+    max-width: 350px;
+}
+
+
+.image-bottom {
+    animation-name: fade1;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-duration: 3s;
+    animation-direction: normal;
+  }
+
+.image-middle {
+    position: absolute;
+    animation-name: fade2;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-duration: 3s;
+    animation-direction: normal;
+    margin-top: 12px;
+    margin-left: 15px;
+  }
+  
+  .image-top {
+    position: absolute;
+    animation-name: fade3;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-duration: 3s;
+    animation-direction: normal;
+    margin-top: 7px;
+    margin-left: 10px;
+  }
+  
+  @keyframes fade3 {
+    0% {
+      opacity: 1;
+    }
+    50% { 
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes fade2 {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes fade1 {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
