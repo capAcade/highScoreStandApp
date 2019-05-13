@@ -35,7 +35,7 @@ const updateRanking = function () {
     ranking.sort(function (a, b) {
         return a.score - b.score;
     }).reverse();
-    storage.saveHighScores(ranking);
+    //storage.saveHighScores(ranking);
 
     activePlayers.sort(function (a, b) {
         return a.score - b.score;
@@ -75,6 +75,9 @@ wsApp.onEvent('updateNickName', (data, ws) => {
 });
 
 wsApp.onEvent('updatePlayerScore', (data, ws) => {
+    console.log('test')
+    const used = process.memoryUsage().heapUsed / 1024 / 1024;
+    console.log(`The script uses approximately ${Math.round(used * 100) / 100} MB`);
     const players = activePlayers.filter(element => element.player.nickName === data.player.nickName);
     if (players.length) {
         players[0].player.score = data.player.score;
