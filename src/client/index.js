@@ -33,7 +33,7 @@ connection.onmessage = e => {
         ranking.slice(0, 10).forEach((element, index) => {
 
             currentData.innerHTML = currentData.innerHTML +
-                ` <li><div class="ranking"><p>${index + 1}</p></div><span class="container"><p class="playername"> ${element.nickName}</p><p class="dots">...............................................................................................................</p><p class="playerscore"> ${element.score} </p></span></li>`;
+                `<li><div class="ranking"><p>${index + 1}</p></div><span class="container"><p class="playername"> ${element.nickName}</p><p class="dots">...............................................................................................................</p><p class="playerscore"> ${element.score} </p></span></li>`;
 
         });
 
@@ -49,7 +49,8 @@ connection.onmessage = e => {
               }, 5000);
             localStorage.setItem("highscore", score);
         }
-
+        console.log(highscore);
+        
         activePlayers.forEach((element, index) => {
             activePlayersList.innerHTML = activePlayersList.innerHTML +
                 `<li><div class="ranking"><p>${index + 1}</p></div><span class="container"><p class="playername">${element.player.nickName}</p><p class="dots">...............................................................................................................</p><p class="playerscore"> ${element.player.score}</p></span></li>`;
