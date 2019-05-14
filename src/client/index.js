@@ -10,6 +10,7 @@ const connection = new WebSocket(url)
 
 let ranking;
 let activePlayers;
+let currentHighscore = 0;
 
 connection.onopen = () => {
     console.log('open');
@@ -41,17 +42,19 @@ connection.onmessage = e => {
         let highscore = localStorage.getItem("highscore");
         let element = document.getElementById("alert");
 
-        if (score > highscore) {
+
+        if (score > currentHighscore) {
             console.log('new winner');
             element.classList.add("doshow");
             setTimeout(function () {
                 element.classList.remove("doshow");
             }, 5000);
+            currentHighscore = score;
             localStorage.setItem("highscore", score);
         } else {
             console.log('no changes');
         }
-        console.log(highscore);
+        console.log(currentHighscore);
         activePlayers.forEach((element, index) => {
             activePlayersList.innerHTML = activePlayersList.innerHTML +
                 `<li><div class="ranking"><p>${index + 1}</p></div><span class="container"><p class="playername">${element.player.nickName}</p><p class="dots">...............................................................................................................</p><p class="playerscore"> ${element.player.score}</p></span></li>`;
