@@ -1,6 +1,7 @@
 import fs from 'fs';
 const playersFile = 'players.txt';
 const highScoresFile = 'highscores.json';
+var highScoresCashed;
 
 class Storage {
     constructor() {
@@ -19,11 +20,15 @@ class Storage {
     }
 
     getHighScores() {
-        if (fs.existsSync(highScoresFile)) {
-            const data = fs.readFileSync(highScoresFile, 'utf8');
-            return data ? JSON.parse(data) : [];
+        if(!highScoresCashed){
+            if (fs.existsSync(highScoresFile)) {
+                const data = fs.readFileSync(highScoresFile, 'utf8');
+                return data ? JSON.parse(data) : [];
+            } else {
+                return [];
+            }
         } else {
-            return [];
+            return highScoresCashed;
         }
     }
 }

@@ -15,7 +15,6 @@ export default class WebS {
       ws.on('pong', heartbeat);
       
       ws.on('message', message => {
-        console.log(`Received message => ${message}`);
         try {
           const msg = JSON.parse(message);
           if (typeof this.events[msg.eventName] === 'function') {
