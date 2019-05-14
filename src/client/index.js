@@ -44,18 +44,17 @@ connection.onmessage = e => {
         if (score > highscore) {
             console.log('new winner');
             element.classList.add("doshow");
-            setTimeout(function(){
+            setTimeout(function () {
                 element.classList.remove("doshow");
-              }, 5000);
+            }, 5000);
             localStorage.setItem("highscore", score);
+        } else {
+            console.log('no changes');
         }
-
+        console.log(highscore);
         activePlayers.forEach((element, index) => {
             activePlayersList.innerHTML = activePlayersList.innerHTML +
                 `<li><div class="ranking"><p>${index + 1}</p></div><span class="container"><p class="playername">${element.player.nickName}</p><p class="dots">...............................................................................................................</p><p class="playerscore"> ${element.player.score}</p></span></li>`;
         });
     }
 };
-
-
-  
