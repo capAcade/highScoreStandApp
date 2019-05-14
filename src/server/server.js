@@ -1,5 +1,6 @@
 import 'colors';
 import Filter from 'bad-words';
+import xss from 'xss';
 
 import Xpress from './apiRoutes/xress';
 import WebS from './wsRoutes/wsr';
@@ -32,15 +33,7 @@ const app = new Xpress(config);
 const wsApp = new WebS(config);
 
 const updateRanking = function () {
-    console.log('called')
-    ranking.sort(function (a, b) {
-        return a.score - b.score;
-    }).reverse();
-    storage.saveHighScores(ranking);
 
-    activePlayers.sort(function (a, b) {
-        return a.score - b.score;
-    }).reverse();
     //wsApp.broadCastToClients({ ranking, activePlayers });
 };
 
@@ -57,11 +50,11 @@ wsApp.onEvent('addNewPlayer', (data, ws) => {
     if (exists) {
         updateNickName(ws, nickName, nickName += activePlayers.length);
     }
-    const player = new Player(filter.clean(nickName), data.player.fullName, data.player.email);
+    const player = new Player(xss(filter.clean(nickName)), xss(data.player.fullName), xss(data.player.email));
     storage.savePlayer(player);
     activePlayers.push({ player, ws});
     ranking.push(player);
-    updateRanking();
+    //updateRanking();
 });
 
 wsApp.onEvent('updateNickName', (data, ws) => {
@@ -74,24 +67,21 @@ wsApp.onEvent('updateNickName', (data, ws) => {
         const player = ranking.filter(element => element.nickName === data.player.oldNickName)[0];
         player.nickName = data.player.newNickName;
     }
-    updateRanking();
+    //updateRanking();
 });
 
 wsApp.onEvent('updatePlayerScore', (data, ws) => {
-    console.log('test')
-    const used = process.memoryUsage().heapUsed / 1024 / 1024;
-    console.log(`The script uses approximately ${Math.round(used * 100) / 100} MB`);
     const players = activePlayers.filter(element => element.player.nickName === data.player.nickName);
     if (players.length) {
         players[0].player.score = data.player.score;
-        updateRanking();
+        //updateRanking();
     } else {
         console.log(`Player ${data.player.nickName} not found, something went wrong`.bgWhite.red);
     }
 });
 
 wsApp.onEvent('refresh', (data, ws) => {
-    updateRanking();
+    //updateRanking();
 });
 
 wsApp.onEvent('startGame', (data, ws) => {
@@ -102,17 +92,24 @@ wsApp.onEvent('resetGame', (data, ws) => {
     wsApp.broadCastToClients({ eventName: 'resetGame' });
     activePlayers.forEach(({player, ws})=>{ws.close()});
     activePlayers = [];
-    updateRanking();
+    //updateRanking();
 });
 
 wsApp.onEvent('playerGameOver', (data, ws) =>{
     let player = activePlayers.filter(element => element.player.nickName === data.player.nickName)[0].player;
     player.status = 'GAMEOVER';
     ws.send(JSON.stringify(data));
-    updateRanking();
+    //updateRanking();
 });
 
 setInterval(function(){
-    console.log('update broadcast');
+    ranking.sort(function (a, b) {
+        return a.score - b.score;
+    }).reverse();
+    storage.saveHighScores(ranking);
+
+    activePlayers.sort(function (a, b) {
+        return a.score - b.score;
+    }).reverse();
     wsApp.broadCastToClients({ ranking, activePlayers });
 }, 1000);

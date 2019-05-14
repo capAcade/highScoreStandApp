@@ -49,6 +49,7 @@ connection.onmessage = e => {
             }, 5000);
             highscore = parseInt(ranking[0].score);
         }
+
         activePlayers.forEach((element, index) => {
             activePlayersList.innerHTML = activePlayersList.innerHTML +
                 `<li><div class="ranking"><p>${index + 1}</p></div><span class="container"><p class="playername">${element.player.nickName}</p><p class="dots">...............................................................................................................</p><p class="playerscore"> ${element.player.score}</p></span></li>`;
