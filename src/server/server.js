@@ -1,5 +1,6 @@
 import 'colors';
 import Filter from 'bad-words';
+import xss from 'xss';
 
 import Xpress from './apiRoutes/xress';
 import WebS from './wsRoutes/wsr';
@@ -57,7 +58,7 @@ wsApp.onEvent('addNewPlayer', (data, ws) => {
     if (exists) {
         updateNickName(ws, nickName, nickName += activePlayers.length);
     }
-    const player = new Player(filter.clean(nickName), data.player.fullName, data.player.email);
+    const player = new Player(xss(filter.clean(nickName)), xss(data.player.fullName), xss(data.player.email));
     storage.savePlayer(player);
     activePlayers.push({ player, ws});
     ranking.push(player);
