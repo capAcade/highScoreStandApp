@@ -14,6 +14,9 @@ var activePlayers;
 var dataModel = {};
 var clickHandlers = {};
 
+var audio = new Audio('/assets/Superhero_violin.ogg');
+
+
 connection.onopen = () => {
     console.log('open');
     connection.send('{"eventName": "refresh"}');
@@ -52,6 +55,9 @@ connection.onmessage = e => {
 
 clickHandlers.startGame = function (e) {
     connection.send('{"eventName": "startGame"}');
+    setTimeout(function(){
+        audio.play();
+    }, 3000)
 };
 
 clickHandlers.resetGame = function (e) {
