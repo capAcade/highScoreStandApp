@@ -1,8 +1,8 @@
-const WebSocket = require('ws')
+const WebSocket = require('ws');
 
 const heartbeat = function() {
   this.isAlive = true;
-}
+};
 
 const noop =function() {};
 export default class WebS {
@@ -21,7 +21,7 @@ export default class WebS {
             this.events[msg.eventName](msg, ws);
           }
         } catch(e) {
-          console.log('There is a stupid who isn\'t sending json data!!!'.bgRed.white);
+          console.log('There is a stupid who isn\'t sending json data!!!'.bgRed.white, message, e);
         }
       });
     });

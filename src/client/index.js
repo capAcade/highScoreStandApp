@@ -1,12 +1,12 @@
 import css from './score.css';
-console.log('hey')
+console.log('hey');
 
 var activePlayersList = document.querySelector('#activePlayersList');
 var currentData = document.querySelector('#currentData');
 var statusSocket = document.querySelector('#statusSocket');
 
-const url = 'ws://localhost:8081/'
-const connection = new WebSocket(url)
+const wsUrl = `ws://${window.location.hostname}:8081/`;
+const connection = new WebSocket(wsUrl);
 
 let ranking;
 let activePlayers;
@@ -15,11 +15,11 @@ let highscore;
 connection.onopen = () => {
     console.log('open');
     connection.send('{"eventName": "refresh"}');
-}
+};
 
 connection.onerror = error => {
     console.log(`WebSocket error: ${error}`)
-}
+};
 
 connection.onmessage = e => {
     let data = JSON.parse(e.data);

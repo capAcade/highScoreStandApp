@@ -45,12 +45,16 @@ const updateNickName = ((ws, oldNickName, newNickName) => {
 });
 
 wsApp.onEvent('addNewPlayer', (data, ws) => {
-    let nickName = filter.clean(data.player.nickName);
-    const exists = activePlayers.filter(element => element.player.nickName === nickName).length !== 0;
-    if (exists) {
-        updateNickName(ws, nickName, nickName += activePlayers.length);
+    let nickName = xss(filter.clean(data.player.nickName));
+    let exists = activePlayers.filter(element => element.player.nickName === nickName).length !== 0;
+    while (exists) {
+      nickName += activePlayers.length;
+      exists = activePlayers.filter(element => element.player.nickName === nickName).length !== 0;
     }
-    const player = new Player(xss(filter.clean(nickName)), xss(data.player.fullName), xss(data.player.email));
+    if (nickName !== data.player.nickName) {
+      updateNickName(ws, data.player.nickName, nickName);
+    }
+    const player = new Player(nickName, xss(data.player.fullName), xss(data.player.email));
     storage.savePlayer(player);
     activePlayers.push({ player, ws});
     ranking.push(player);
