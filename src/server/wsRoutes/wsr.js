@@ -41,9 +41,7 @@ export default class WebS {
   broadCastToClients(data) {
     this.wss.clients.forEach(function each(client) {
       if (client.readyState === WebSocket.OPEN) {
-        console.log('test', data);
-        let text = JSON.stringify(data)
-        client.send(text);
+        client.send(JSON.stringify(data));
       }
     });
   }

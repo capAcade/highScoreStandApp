@@ -1,6 +1,6 @@
 import fs from 'fs';
 const playersFile = 'players.txt';
-const highScoresFile = 'highscores.json';
+const highScoresFile = `highscores-${Date.now()}.json`;
 var highScoresCashed;
 
 class Storage {

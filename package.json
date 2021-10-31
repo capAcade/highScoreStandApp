@@ -27,6 +27,7 @@
     "capmangalaxy": "git+https://git@github.com/capAcade/capManGalaxy.git#infinityMode",
     "colors": "^1.3.3",
     "express": "^4.16.4",
+    "ip": "^1.1.5",
     "ws": "^7.0.0",
     "xss": "^1.0.6"
   },
