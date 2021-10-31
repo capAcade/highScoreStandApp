@@ -112,8 +112,11 @@ setInterval(function(){
     }).reverse();
     storage.saveHighScores(ranking);
 
+
     activePlayers.sort(function (a, b) {
         return a.score - b.score;
     }).reverse();
-    wsApp.broadCastToClients({ ranking, activePlayers });
+    // basically remove the websocket from the object else parse.json go's nuts
+    let datah = activePlayers.map(x => x.player )
+    wsApp.broadCastToClients({ ranking, activePlayers: datah });
 }, 1000);

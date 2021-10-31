@@ -45,10 +45,11 @@ connection.onmessage = e => {
         });
 
         activePlayers.forEach((element) => {
+          console.log(element)
             activePlayersList.innerHTML = activePlayersList.innerHTML +
-                `<li onclick="selectNickName('${element.player.nickName}')">nickName: ${element.player.nickName} score: ${element.player.score} email: ${element.player.email}</li>`
+                `<li onclick="selectNickName('${element.nickName}')">nickName: ${element.nickName} score: ${element.score} email: ${element.email}</li>`
             playerSelect.innerHTML = playerSelect.innerHTML +
-                `<option value="${element.player.nickName}">${element.player.nickName}</option>`;
+                `<option value="${element.nickName}">${element.nickName}</option>`;
         });
     }
 };
