@@ -8,11 +8,12 @@ var statusSocket = document.querySelector('#statusSocket');
 
 const url = 'ws://localhost:8081/';
 const connection = new WebSocket(url);
-
+console.log(connection)
 var ranking;
 var activePlayers;
 var dataModel = {};
 var clickHandlers = {};
+var paused = false;
 
 var audio = new Audio('/assets/Superhero_violin.ogg');
 
@@ -28,10 +29,16 @@ connection.onerror = error => {
     console.log(`WebSocket error: ${error}`)
 };
 
+connection.onclose = function(event) {
+  statusSocket.innerHTML = 'CLOSED!!!';
+  document.querySelector('body').style['background-color'] ='red';
+  console.log(`WebSocket CLOSED: ${event}`)
+};
+
 connection.onmessage = e => {
     let data = JSON.parse(e.data);
-    console.log(data);
-    if (data && data.ranking && data.activePlayers) {
+    if (data && data.ranking && data.activePlayers && !paused) {
+      window.document.querySelector('#status').innerHTML ='false';
         ranking = data.ranking;
         activePlayers = data.activePlayers;
 
@@ -52,6 +59,13 @@ connection.onmessage = e => {
                 `<option value="${element.nickName}">${element.nickName}</option>`;
         });
     }
+    else {
+      window.document.querySelector('#status').innerHTML='true';
+    }
+};
+
+clickHandlers.togglePause = function (e) {
+  paused = !paused;
 };
 
 clickHandlers.startGame = function (e) {
